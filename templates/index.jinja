@@ -1,0 +1,244 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Foundation Template | Sidebar</title>
+        <meta name="description" content="Documentation and reference library for ZURB Foundation. JavaScript, CSS, components, grid and more."/>
+        <meta name="author" content="ZURB, inc. ZURB network also includes zurb.com"/>
+        <meta name="copyright" content="ZURB, inc. Copyright (c) 2015"/>
+        <link rel="stylesheet" href="/assets/css/foundation.css"/>
+        <script src="/assets/js/vendor/modernizr.js"></script>
+
+
+        <style>
+
+            a.status {
+                display: inline-block;
+                background-size: contain;
+                text-decoration: none;
+                text-indent: -9999em;
+                width: 44px;
+                height: 44px;
+            }
+
+            .data-model {
+                background: url('/assets/site-images/data-model.svg') top left no-repeat;
+            }
+
+            .scraper {
+                background: url('/assets/site-images/scraper.svg') top left no-repeat;
+            }
+
+            .crawler {
+                background: url('/assets/site-images/crawler.svg') top left no-repeat;
+            }
+
+            .mining {
+                background: url('/assets/site-images/mining.svg') top left no-repeat;
+            }
+
+            .docs {
+                background: url('/assets/site-images/docs.svg') top left no-repeat;
+            }
+
+            .robot {
+                background: url('/assets/site-images/robot.svg') top left no-repeat;
+            }
+
+            .table {
+                background: url('/assets/site-images/table.svg') top left no-repeat;
+            }
+            
+            .phone {
+                background: url('/assets/site-images/phone.svg') top left no-repeat;
+            }
+
+            .done {
+                background-color: #43AC6A;
+            }
+
+            .in-progress {
+                background-color: #f08a24;
+            }
+
+            .todo {
+                background-color: #f04124;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div class="row">
+            <div class="large-3 columns">
+                <h1><img src="/assets/site-images/influence-usa_logo.png" alt="Influence USA"/></h1>
+            </div>
+            <div class="large-9 columns">
+                <ul class="inline-list right">
+                    <li><a href="https://github.com/influence-usa">View My GitHub Profile</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="large-9 push-3 columns">
+                <h2>
+                     Influence USA <small><a href="https://github.com/influence-usa">github.com/influence-usa</a></small>
+                </h2>
+                <p>
+                    A community of data plumbers working on obtaining, cleaning and transforming data describing political influence
+                </p>
+                <div id="about">
+                    <h3>
+                        About
+                    </h3>
+                    <p>
+                        This project's goal is to become a commons for the work of acquiring, parsing and generating data on political influence in the United States of America.
+                    </p>
+                </div>
+                <div id="getInvolved">
+                    <h3>
+                        Get Involved
+                    </h3>
+                    <p>
+                        We'll be at PyCon 2015! More info <a href="#">here</a>.
+                    </p>
+                </div>
+                <div id="progress">
+                    <h3>
+                        Progress
+                    </h3>
+
+                    <ul class="tabs" data-tab>
+                      <li class="tab-title active"><a href="#panel1">Campaign Finance</a></li>
+                      <li class="tab-title"><a href="#panel2">Lobbying</a></li>
+                      <li class="tab-title"><a href="#panel3">Other Disclsoures</a></li>
+                    </ul>
+
+                    <div class="tabs-content">
+                        <div class="content active" id="panel1">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Jurisdiction</th>
+                                        <th>Disclosure Type</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for item in campaign_finance_tasks %}
+                                    <tr>
+                                        <td>
+                                            {{ item.jurisdiction }}
+                                        </td>
+                                        <td>
+                                            {{ item.disclosuretype }}
+                                        </td>
+                                        <td>
+                                            {% for status in item.statuses %}
+                                                {% if status.state %}
+                                                <a href="{{status.url}}" class="status {{status.task}} {{status.state}}">{{status.task}} {{status.state}}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="content" id="panel2">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Jurisdiction</th>
+                                        <th>Registrations</th>
+                                        <th>Reporting</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for item in lobbying_tasks %}
+                                    <tr>
+                                        <td>
+                                            {{ item.jurisdiction }}
+                                        </td>
+                                        <td>
+                                            {{ item.disclosuretype }}
+                                        </td>
+                                        <td>
+                                            {% for status in item.statuses %}
+                                                {% if status.state %}
+                                                <a href="{{status.url}}" class="status {{status.task}} {{status.state}}">{{status.task}} {{status.state}}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="content" id="panel3">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Jurisdiction</th>
+                                        <th>Registrations</th>
+                                        <th>Reporting</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for item in other_tasks %}
+                                    <tr>
+                                        <td>
+                                            {{ item.jurisdiction }}
+                                        </td>
+                                        <td>
+                                            {{ item.disclosuretype }}
+                                        </td>
+                                        <td>
+                                            {% for status in item.statuses %}
+                                                {% if status.state %}
+                                                <a href="{{status.url}}" class="status {{status.task}} {{status.state}}">{{status.task}} {{status.state}}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="large-3 pull-9 columns">
+                <ul class="side-nav">
+                    <li><a class="show-on-focus" href="#about">About</a></li>
+                    <li><a href="#">Get Involved!</a></li>
+                    <li><a href="#">Progress</a></li>
+                </ul>
+                <!--p><img src="http://placehold.it/320x240&text=Ad"/></p-->
+            </div>
+
+        </div>
+
+        <footer class="row">
+            <div class="large-12 columns">
+            </div>
+        </footer>
+        <script src="/assets/js/vendor/jquery.js"></script>
+        <script src="/assets/js/foundation.min.js"></script>
+        <script>
+            $(document).foundation();
+
+            var doc = document.documentElement;
+            doc.setAttribute('data-useragent', navigator.userAgent);
+        </script>
+    </body>
+</html>
